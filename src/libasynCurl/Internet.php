@@ -80,9 +80,10 @@ final class Internet extends PluginBase {
     ): void {
         self::fetch($page, "GET", $body, $headers, $timeout)
             ->then(function (InternetRequestResult $result) use ($executor) {
+                var_dump($result->getBody());
                 $executor->getResolve()($result);
             })
-            ->reject(function (Throwable $e)  use ($executor) {
+            ->catch(function (Throwable $e)  use ($executor) {
                 $executor->getReject()($e);
             });
     }
@@ -98,7 +99,7 @@ final class Internet extends PluginBase {
             ->then(function (InternetRequestResult $result) use ($executor) {
                 $executor->getResolve()($result);
             })
-            ->reject(function (Throwable $e)  use ($executor) {
+            ->catch(function (Throwable $e)  use ($executor) {
                 $executor->getReject()($e);
             });
     }
@@ -114,7 +115,7 @@ final class Internet extends PluginBase {
             ->then(function (InternetRequestResult $result) use ($executor) {
                 $executor->getResolve()($result);
             })
-            ->reject(function (Throwable $e)  use ($executor): void {
+            ->catch(function (Throwable $e)  use ($executor): void {
                 $executor->getReject()($e);
             });
     }
@@ -130,7 +131,7 @@ final class Internet extends PluginBase {
             ->then(function (InternetRequestResult $result) use ($executor) {
                 $executor->getResolve()($result);
             })
-            ->reject(function (Throwable $e)  use ($executor): void {
+            ->catch(function (Throwable $e)  use ($executor): void {
                 $executor->getReject()($e);
             });
     }
@@ -146,7 +147,7 @@ final class Internet extends PluginBase {
             ->then(function (InternetRequestResult $result) use ($executor) {
                 $executor->getResolve()($result);
             })
-            ->reject(function (Throwable $e)  use ($executor): void {
+            ->catch(function (Throwable $e)  use ($executor): void {
                 $executor->getReject()($e);
             });
     }
