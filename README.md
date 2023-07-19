@@ -1,2 +1,2 @@
-# libasyncCurl
+# libasynCurl
 ✨A library of asynchronous Curl

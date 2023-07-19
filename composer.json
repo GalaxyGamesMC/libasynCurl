@@ -1,0 +1,33 @@
+{
+    "name": "jacob/async-curl-ssl",
+    "description": "AsyncCurlSSL is a library that allows you to make asynchronous requests to the Internet using cURL with SSL support.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Jacob\\AsyncCurlSsl\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "jacob.g"
+        }
+    ],
+    "repositories": [
+        {
+            "type":"package",
+            "package": {
+              "name": "nam/vapm-pmmp",
+              "version": "1.0.0",
+              "source": {
+                  "url": "https://github.com/VennDev/LibVapmPMMP.git",
+                  "type": "git",
+                  "reference":"main"
+                }
+            }
+        }
+    ],
+    "require": {
+        "nam/vapm-pmmp": "1.0.0"
+    }
+}
