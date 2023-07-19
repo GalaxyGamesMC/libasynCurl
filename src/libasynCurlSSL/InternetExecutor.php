@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace libasynCurl;
+namespace libasynCurlSSL;
 
 use Closure;
 
