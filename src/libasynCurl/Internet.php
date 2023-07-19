@@ -80,7 +80,6 @@ final class Internet extends PluginBase {
     ): void {
         self::fetch($page, "GET", $body, $headers, $timeout)
             ->then(function (InternetRequestResult $result) use ($executor) {
-                var_dump($result->getBody());
                 $executor->getResolve()($result);
             })
             ->catch(function (Throwable $e)  use ($executor) {
