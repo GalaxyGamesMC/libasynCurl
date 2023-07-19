@@ -1,5 +1,5 @@
 {
-    "name": "jacob/async-curl-ssl",
+    "name": "galaxy/async-curl-ssl",
     "description": "AsyncCurlSSL is a library that allows you to make asynchronous requests to the Internet using cURL with SSL support.",
     "type": "library",
     "license": "MIT",

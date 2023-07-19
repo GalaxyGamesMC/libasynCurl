@@ -2,16 +2,22 @@
 
 declare(strict_types=1);
 
-namespace libasynCurlSSL;
+namespace libasynCurl;
 
+use pocketmine\plugin\PluginBase;
 use pocketmine\utils\AssumptionFailedError;
 use pocketmine\utils\InternetException;
 use pocketmine\utils\InternetRequestResult;
 use Throwable;
 use vennv\vapm\Promise;
 use vennv\vapm\System;
+use vennv\vapm\VapmPMMP;
 
-final class Internet {
+final class Internet extends PluginBase {
+
+    protected function onEnable(): void {
+        VapmPMMP::init($this);
+    }
     
     protected static function fetch(
         string $page,
@@ -28,15 +34,16 @@ final class Internet {
                         CURLOPT_URL => $page,
                         CURLOPT_TIMEOUT => $timeout,
                         CURLOPT_FOLLOWLOCATION => true,
+                        CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                        CURLOPT_SSL_VERIFYPEER => true,
-                        CURLOPT_SSL_VERIFYHOST => 2,
-                        CURLOPT_CAINFO => getcwd() . '\cacert.pem',
+                        CURLOPT_SSL_VERIFYPEER => false,
+                        CURLOPT_HEADER => true,
                         CURLOPT_CUSTOMREQUEST => $method,
                         CURLOPT_POSTFIELDS => $body,
                         CURLOPT_HTTPHEADER => $headers
                     ]);
                     $result = curl_exec($curl);
+                    curl_close($curl);
                     if($result === false){
                         throw new InternetException(curl_error($curl));
                     }
@@ -61,7 +68,7 @@ final class Internet {
                     $reject($e);
                 }
             }, 0);
-        });
+        }, false);
     }
 
     public static function getURL(
@@ -71,11 +78,11 @@ final class Internet {
         int $timeout = 0,
         ?InternetExecutor $executor = null
     ): void {
-        Internet::fetch($page, "GET", $body, $headers, $timeout)
-            ->then(function ($result) use ($executor): void {
+        self::fetch($page, "GET", $body, $headers, $timeout)
+            ->then(function (InternetRequestResult $result) use ($executor) {
                 $executor->getResolve()($result);
             })
-            ->reject(function (Throwable $e)  use ($executor): void {
+            ->reject(function (Throwable $e)  use ($executor) {
                 $executor->getReject()($e);
             });
     }
@@ -87,11 +94,11 @@ final class Internet {
         int $timeout = 0,
         ?InternetExecutor $executor = null
     ): void {
-        Internet::fetch($page, "POST", $body, $headers, $timeout)
-            ->then(function ($result) use ($executor): void {
+        self::fetch($page, "POST", $body, $headers, $timeout)
+            ->then(function (InternetRequestResult $result) use ($executor) {
                 $executor->getResolve()($result);
             })
-            ->reject(function (Throwable $e)  use ($executor): void {
+            ->reject(function (Throwable $e)  use ($executor) {
                 $executor->getReject()($e);
             });
     }
@@ -103,8 +110,8 @@ final class Internet {
         int $timeout = 0,
         ?InternetExecutor $executor = null
     ): void {
-        Internet::fetch($page, "PUT", $body, $headers, $timeout)
-            ->then(function ($result) use ($executor): void {
+        self::fetch($page, "PUT", $body, $headers, $timeout)
+            ->then(function (InternetRequestResult $result) use ($executor) {
                 $executor->getResolve()($result);
             })
             ->reject(function (Throwable $e)  use ($executor): void {
@@ -119,8 +126,8 @@ final class Internet {
         int $timeout = 0,
         ?InternetExecutor $executor = null
     ): void {
-        Internet::fetch($page, "DELETE", $body, $headers, $timeout)
-            ->then(function ($result) use ($executor): void {
+        self::fetch($page, "DELETE", $body, $headers, $timeout)
+            ->then(function (InternetRequestResult $result) use ($executor) {
                 $executor->getResolve()($result);
             })
             ->reject(function (Throwable $e)  use ($executor): void {
@@ -135,8 +142,8 @@ final class Internet {
         int $timeout = 0,
         ?InternetExecutor $executor = null
     ): void {
-        Internet::fetch($page, "PATCH", $body, $headers, $timeout)
-            ->then(function ($result) use ($executor): void {
+        self::fetch($page, "PATCH", $body, $headers, $timeout)
+            ->then(function (InternetRequestResult $result) use ($executor) {
                 $executor->getResolve()($result);
             })
             ->reject(function (Throwable $e)  use ($executor): void {

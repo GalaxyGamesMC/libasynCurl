@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6513eb100c42dd7321e6bd5743e577b6",
+    "content-hash": "088f3c1d8978c45f5b3d12e2b856116e",
     "packages": [
         {
             "name": "nam/vapm-pmmp",

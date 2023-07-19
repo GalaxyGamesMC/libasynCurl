@@ -1,6 +1,0 @@
-name: libasynCurlSSL
-version: 1.0.0
-api: 5.0.0
-antigen: libasynCurlSSL
-author: GalaxyGames
-description: 'libasynCurlSSL is a library that allows you to make asynchronous requests to the Internet using cURL with SSL support.'
