@@ -1,0 +1,19 @@
+{
+    "packages": [
+        {
+            "name": "nam/vapm-pmmp",
+            "version": "1.0.0",
+            "version_normalized": "1.0.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/VennDev/LibVapmPMMP.git",
+                "reference": "main"
+            },
+            "type": "library",
+            "installation-source": "source",
+            "install-path": "../nam/vapm-pmmp"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

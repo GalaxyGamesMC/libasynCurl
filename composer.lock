@@ -1,0 +1,29 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "6513eb100c42dd7321e6bd5743e577b6",
+    "packages": [
+        {
+            "name": "nam/vapm-pmmp",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/VennDev/LibVapmPMMP.git",
+                "reference": "main"
+            },
+            "type": "library"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}
