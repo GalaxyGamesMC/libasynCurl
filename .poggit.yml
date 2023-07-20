@@ -5,4 +5,8 @@ branches:
 projects:
   libasynCurl:
     path: ""
+    libs:
+      - src: VennDev/LibVapmPMMP/LibVapmPMMP
+        version: ^1.7
+        branch: "main"
 ...
