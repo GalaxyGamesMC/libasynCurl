@@ -47,7 +47,9 @@ final class Internet extends PluginBase {
                     if($result === false){
                         throw new InternetException(curl_error($curl));
                     }
-                    if(!is_string($result)) throw new AssumptionFailedError("curl_exec() should return string|false when CURLOPT_RETURNTRANSFER is set");
+                    if(!is_string($result)) {
+                        throw new AssumptionFailedError("curl_exec() should return string|false when CURLOPT_RETURNTRANSFER is set");
+                    }
                     $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
                     $headerSize = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
                     $rawHeaders = substr($result, 0, $headerSize);
@@ -58,7 +60,7 @@ final class Internet extends PluginBase {
                         foreach(explode("\r\n", $rawHeaderGroup) as $line){
                             $nameValue = explode(":", $line, 2);
                             if(isset($nameValue[1])){
-                                $headerGroup[trim(strtolower($nameValue[0]))] = trim($nameValue[1]);
+                                $headerGroup[strtolower(trim($nameValue[0]))] = trim($nameValue[1]);
                             }
                         }
                         $headers[] = $headerGroup;
