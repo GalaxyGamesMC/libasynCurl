@@ -29,5 +29,11 @@
     ],
     "require": {
         "nam/vapm-pmmp": "1.0.0"
+    },
+    "extra": {
+        "virion": {
+            "spec": "3.0",
+            "namespace-root": "galaxygames\\scoreboard"
+        }
     }
 }
